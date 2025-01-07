@@ -43,4 +43,8 @@ public extension Image {
   
   static let trash: Self = ImageAsset.trash.swiftUIImage
 	static let pencil: Self = ImageAsset.pencil.swiftUIImage
+  
+  
+  static let kakaoLogin: Self = ImageAsset.kakaoLogin.swiftUIImage
+  static let appleLogin: Self = ImageAsset.appleLogin.swiftUIImage
 }
