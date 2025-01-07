@@ -16,6 +16,7 @@ let project = Project.makeModule(
     .feature(implements: .article),
     .feature(implements: .myPage),
     .feature(implements: .splash),
+    .feature(implements: .login),
     .core
   ],
   sources: ["Sources/**"]

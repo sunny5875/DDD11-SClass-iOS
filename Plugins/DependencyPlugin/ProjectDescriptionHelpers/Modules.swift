@@ -36,6 +36,7 @@ public extension ModulePath {
     case article = "Article"
     case myPage = "MyPage"
     case splash = "Splash"
+    case login = "Login"
     
     public static let name: String = "Feature"
   }
