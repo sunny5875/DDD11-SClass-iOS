@@ -26,6 +26,7 @@ public struct SplashStore {
   
   public enum Action {
     case onAppear
+    case routeToLoginScreen
     case routeToOnboardingScreen
     case routeToMainTabScreen
     case fetchUser(TaskResult<UserInfo>)
@@ -39,6 +40,8 @@ public struct SplashStore {
       switch action {
       case .onAppear:
         return handleRouting()
+      case .routeToLoginScreen:
+        return .none
       case .routeToOnboardingScreen:
         return .none
       case .routeToMainTabScreen:
@@ -47,7 +50,7 @@ public struct SplashStore {
         state.userInfo = userInfo
         return .send(.routeToMainTabScreen)
       case .fetchUser(.failure):
-        return .send(.routeToOnboardingScreen)
+        return .send(.routeToLoginScreen)
       }
     }
   }
@@ -56,13 +59,13 @@ public struct SplashStore {
     if keychainClient.isSignIn {
       return requestFetchUser()
     } else {
-      return .send(.routeToOnboardingScreen)
+      return .send(.routeToLoginScreen)
     }
   }
   
   private func requestFetchUser() -> Effect<Action> {
     guard let userID = keychainClient.userID else {
-      return .send(.routeToOnboardingScreen)
+      return .send(.routeToLoginScreen)
     }
     
     return .run { [userID = userID] send in

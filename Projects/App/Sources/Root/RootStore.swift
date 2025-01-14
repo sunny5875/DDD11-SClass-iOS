@@ -16,6 +16,7 @@ public struct RootStore {
   @ObservableState
   public enum State {
     case splash(SplashStore.State)
+    case login(LoginStore.State)
     case onboarding(OnboardingRootStore.State)
     case mainTab(MainTabStore.State)
     
@@ -26,6 +27,7 @@ public struct RootStore {
   
   public enum Action {
     case splash(SplashStore.Action)
+    case login(LoginStore.Action)
     case onboarding(OnboardingRootStore.Action)
     case mainTab(MainTabStore.Action)
   }
@@ -33,10 +35,13 @@ public struct RootStore {
   public var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
+      case .splash(.routeToLoginScreen):
+        state = .login(LoginStore.State())
+        return .none
       case .splash(.routeToMainTabScreen):
         state = .mainTab(MainTabStore.State(.home))
         return .none
-      case .splash(.routeToOnboardingScreen):
+      case .splash(.routeToOnboardingScreen), .login(.routeToOnboardingScreen):
         state = .onboarding(OnboardingRootStore.State())
         return .none
       case .onboarding(.onSuccessSignUp):
@@ -50,6 +55,9 @@ public struct RootStore {
     }
     .ifCaseLet(\.splash, action: \.splash) {
       SplashStore()
+    }
+    .ifCaseLet(\.login, action: \.login) {
+      LoginStore()
     }
     .ifCaseLet(\.onboarding, action: \.onboarding) {
       OnboardingRootStore()

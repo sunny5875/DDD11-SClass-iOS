@@ -9,7 +9,7 @@ let project = Project.makeAppModule(
   product: .staticFramework,
   settings: .settings(),
   dependencies: [
-
+    .core
   ],
   sources: ["Sources/**"]
 )

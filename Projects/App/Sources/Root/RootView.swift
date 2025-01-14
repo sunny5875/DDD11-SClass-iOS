@@ -21,6 +21,10 @@ struct RootView: View {
         if let store = store.scope(state: \.splash, action: \.splash) {
           SplashView(store: store)
         }
+      case .login:
+          if let store = store.scope(state: \.login, action: \.login) {
+            LoginView(store: store)
+          }
       case .onboarding:
         if let store = store.scope(state: \.onboarding, action: \.onboarding) {
           OnboardingRootView(store: store)
