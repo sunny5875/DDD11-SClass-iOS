@@ -15,7 +15,9 @@ let project = Project.makeModule(
     .SPM.combineMoya,
     .SPM.keychainAccess,
     .SPM.kingfisher,
-    .SPM.skeletonUI
+    .SPM.skeletonUI,
+    .SPM.kakaoSDKAuth,
+    .SPM.kakaoSDKUser
   ],
   sources: ["Sources/**"]
 )

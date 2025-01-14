@@ -97,6 +97,17 @@ public extension InfoPlistDictionary {
     return self.merging(["UISupportedInterfaceOrientations": .array(value.map { .string($0) })]) { (_, new) in new }
   }
   
+  func setLSApplicationQueriesSchemes(_ value: [String] = ["kakaokompassauth", "kakaolink"]) -> InfoPlistDictionary {
+    return self.merging(["LSApplicationQueriesSchemes": .array(value.map { .string($0) })]) { (_, new) in new }
+  }
+  
+  func setCFBundleURLTypes(_ value: String) -> InfoPlistDictionary {
+    return self.merging(["CFBundleURLTypes": .array([.dictionary([
+      "CFBundleTypeRole": .string("Editor"),
+      "CFBundleURLSchemes": .array([.string(value)])
+  ])])]) { (_, new) in new }
+  }
+  
   func setCustomValue(_ key: String, _ value: String) -> InfoPlistDictionary {
     return self.merging([key: .string(value)]) { (_, new) in new }
   }

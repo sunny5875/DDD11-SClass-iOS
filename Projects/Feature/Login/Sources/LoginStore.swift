@@ -12,6 +12,7 @@ import CoreDomain
 import CoreNetwork
 
 import ComposableArchitecture
+import KakaoSDKUser
 
 @Reducer
 public struct LoginStore {
@@ -38,6 +39,23 @@ public struct LoginStore {
         return .send(.routeToOnboardingScreen)
       case .routeToOnboardingScreen:
         return .none
+        
+      case .didTapKakaoLogin:
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoTalk() success.")
+
+                    //do something
+                    _ = oauthToken
+                }
+            }
+        }
+        return .none
+        
       default:
         return .none
       }

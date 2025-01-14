@@ -38,6 +38,10 @@ extension InfoPlist {
       .setUISupportedInterfaceOrientations(["UIInterfaceOrientationPortrait"])
       .setCustomValue("baseURL", "$(BASE_URL)")
       .setCustomValue("chatBaseURL", "$(CHAT_BASE_URL)")
+      .setCustomValue("KAKAO_NATIVE_APP_KEY", "$(KAKAO_NATIVE_APP_KEY)")
+      .setCFBundleURLTypes("kakao$(KAKAO_NATIVE_APP_KEY)")
+      .setLSApplicationQueriesSchemes() // kakao
+    
   )
   
   public static let networkInfoPlist: Self = .extendingDefault(

@@ -30,11 +30,15 @@ let package = Package(
     .package(
       url: "https://github.com/CSolanaM/SkeletonUI.git",
       revision: "f025e9ba5d051374d7344efa8859df5b9399a181" // 2.0.2
+    ),
+    .package(
+      url: "https://github.com/kakao/kakao-ios-sdk.git",
+      branch: "master"
     )
   ],
   targets: [
     .target(
       name: "OnboardingKit",
-      dependencies: ["CombineMoya"])
+      dependencies: ["CombineMoya", "KakaoSDKAuth", "KakaoSDKUser"])
   ]
 )
