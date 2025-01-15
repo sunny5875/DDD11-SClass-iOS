@@ -6,6 +6,7 @@
 //  Copyright © 2025 DDD , Ltd., All rights reserved.
 //
 
+import AuthenticationServices
 import SwiftUI
 
 import SharedDesignSystem

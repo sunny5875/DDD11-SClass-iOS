@@ -25,11 +25,15 @@ public struct RootStore {
     }
   }
   
+  
+  @Dependency(\.socialLogin) private var socialLogin
+  
   public enum Action {
     case splash(SplashStore.Action)
     case login(LoginStore.Action)
     case onboarding(OnboardingRootStore.Action)
     case mainTab(MainTabStore.Action)
+    case onOpenURL(URL)
   }
   
   public var body: some ReducerOf<Self> {
@@ -49,6 +53,11 @@ public struct RootStore {
         return .none
       case .mainTab:
         return .none
+          
+      case let .onOpenURL(url):
+        socialLogin.handleKakaoUrl(url)
+        return .none
+          
       default:
         return .none
       }

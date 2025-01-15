@@ -35,5 +35,8 @@ struct RootView: View {
         }
       }
     }
+    .onOpenURL { url in
+      store.send(.onOpenURL(url))
+    }
   }
 }
