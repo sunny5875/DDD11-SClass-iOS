@@ -28,8 +28,8 @@ public struct ChatNavigationStore {
   public struct State {
     var path = StackState<ChatPath.State>()
     public var chat: ChatStore.State = .init()
-    public var checklist: CreateChecklistStore.State = .init(checklistID: "")
-    public var enterKeyword: EnterKeywordStore.State = .init(checklist: .init(id: ""))
+    public var checklist: CreateChecklistStore.State = .init(checklistID: 0)
+    public var enterKeyword: EnterKeywordStore.State = .init(checklist: .init(id: 0))
     public init() {
     }
   }

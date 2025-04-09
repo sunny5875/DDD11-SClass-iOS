@@ -15,15 +15,15 @@ enum ChecklistAPI {
   /// 목록 조회
   case getChecklists(userID: String)
   /// 상세 조회
-  case getChecklist(id: String)
+  case getChecklist(id: Int)
   /// 체크리스트 프로젝트 삭제
-  case deleteProject(checklistId: String)
+  case deleteProject(checklistId: Int)
   /// 체크리스트 다중 항목 삭제
-  case deleteChecklist(checklistId: String, checkBoxList: [String])
+  case deleteChecklist(checklistId: Int, checkBoxId: Int)
   /// 체크리스트 프로젝트 제목 변경
-  case changeKeyword(checklistId: String, newKeyword: String)
+  case changeKeyword(checklistId: Int, newKeyword: String)
   /// 완료 상태 변경
-  case complete(checklistId: String, id: String, completed: Int)
+  case complete(checklistId: Int, id: Int, completed: Int)
 }
 
 extension ChecklistAPI: BaseAPI {
@@ -42,7 +42,7 @@ extension ChecklistAPI: BaseAPI {
     case .deleteChecklist:
       return .delete
     case .changeKeyword:
-      return .patch
+      return .put
     case .complete:
       return .patch
     }
@@ -54,27 +54,27 @@ extension ChecklistAPI: BaseAPI {
       return ""
       
     case .getChecklist(let id):
-      return "/\(id)/checkboxes"
+      return "/\(id)/items"
       
     case .deleteProject(let checklistId):
       return "/\(checklistId)"
     
-    case .deleteChecklist(let checklistId, _):
-      return "/\(checklistId)/checkboxes"
+    case .deleteChecklist(let checklistId, let id):
+      return "/\(checklistId)/items/\(id)"
     
     case .changeKeyword(let checklistId, _):
-      return "/\(checklistId)"
+      return "/\(checklistId)/title"
     
     case .complete(let checklistId, let id, _):
-      return "/\(checklistId)/checkboxes/\(id)/completed"
+      return "/\(checklistId)/items/\(id)/complete"
     }
   }
   
   var parameters: [String: Any]? {
     switch self {
     case .getChecklists(let userID):
-      return [
-        "userId": userID
+      return [:
+        // "userNo": userID TODO: userNo받도록 서버 수정 필요
       ]
       
     case .getChecklist:

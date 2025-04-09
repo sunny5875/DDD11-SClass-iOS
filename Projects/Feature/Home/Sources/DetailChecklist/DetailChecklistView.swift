@@ -46,7 +46,7 @@ struct DetailChecklistView: View {
         List {
           ForEach(store.card.checkBoxList) { checkBox in
             DetailColorChecklistCellView(
-              title: checkBox.label,
+              title: checkBox.content,
               isSelected: checkBox.isCompleted,
               onToggle: {
                 store.send(.didTapChecklistCompleteButton(checkBox: checkBox))

@@ -109,15 +109,15 @@ public struct HomeStore {
         
         return .run { send in
           await send(.isLoadingChanged(isLoading: true))
-          //          async let checklistsReponse = try checklistAPIClient.getChecklists(userID: userID)
-          //          async let articlesReponse = try homeAPIClient.fetchArticles(userID)
+          async let checklistsReponse = try checklistAPIClient.getChecklists(userID: userID)
+//          async let articlesReponse = try homeAPIClient.fetchArticles(userID)
           
           let (
             checklists
           //            articles
           ) = try await (
-            [Checklist.mock1, Checklist.mock2]
-            //            checklistsReponse,
+//            [Checklist.mock1, Checklist.mock2]
+                        checklistsReponse
             //            articlesReponse
           )
           

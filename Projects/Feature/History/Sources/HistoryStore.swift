@@ -81,13 +81,7 @@ public struct HistoryStore {
       case .onAppear:
         state.checkList = [
           .mock1,
-          .mock2,
-          .init(id: UUID().uuidString, title: "요청/문의", checkBoxList: []),
-          .init(id: UUID().uuidString, title: "보고/컴펌", checkBoxList: []),
-          .init(id: UUID().uuidString, title: "협업", checkBoxList: []),
-          .init(id: UUID().uuidString, title: "커뮤니케이션", checkBoxList: []),
-          .init(id: UUID().uuidString, title: "인터렉션 디자인", checkBoxList: []),
-          .init(id: UUID().uuidString, title: "예시용 체크리스트", checkBoxList: []),
+          .mock2
         ]
         return .none
         

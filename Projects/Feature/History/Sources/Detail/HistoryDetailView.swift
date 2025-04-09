@@ -113,7 +113,7 @@ struct HistoryDetailView: View {
     List {
       ForEach(store.checkList.checkBoxList) { checkBox in
         DetailColorChecklistCellView(
-          title: checkBox.label,
+          title: checkBox.content,
           isSelected: checkBox.isCompleted,
           onToggle: {
             store.send(.didTapChecklistComplete(checkBox))

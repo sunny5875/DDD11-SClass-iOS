@@ -21,7 +21,7 @@ public struct CreateChecklistStore {
     var checklist: Checklist
     var selectedChecklist: [CheckBox] = []
     
-    public init(checklistID: String) {
+    public init(checklistID: Int) {
       self.checklist = .init(id: checklistID)
     }
   }
@@ -75,21 +75,23 @@ public struct CreateChecklistStore {
         }
         return .none
       case .didTapSaveButton:
-        let checklistId = state.checklist.id
-        let deleteCheckBoxList = state.checklist.checkBoxList.filter { !state.selectedChecklist.contains($0)
-        }.map { $0.id }
-        let selectCheckBoxList = state.selectedChecklist
-        return .run { send in
-          do {
-            _ = try await checklistAPIClient.deleteChecklist(
-              checklistId: checklistId,
-              checkBoxList: deleteCheckBoxList
-            )
-            await send(.onCompleteSaveButton(selectCheckBoxList))
-          } catch {
-            print(error.localizedDescription)
-          }
-        }
+        // TODO: api 연결
+        return .none
+//        let checklistId = state.checklist.id
+//        let deleteCheckBoxList = state.checklist.checkBoxList.filter { !state.selectedChecklist.contains($0)
+//        }.map { $0.id }
+//        let selectCheckBoxList = state.selectedChecklist
+//        return .run { send in
+//          do {
+//            _ = try await checklistAPIClient.deleteChecklist(
+//              checklistId: checklistId,
+//              checkBoxId: deleteCheckBoxList
+//            )
+//            await send(.onCompleteSaveButton(selectCheckBoxList))
+//          } catch {
+//            print(error.localizedDescription)
+//          }
+//        }
       case .onCompleteSaveButton(let list):
         state.checklist.checkBoxList = list
         return .send(.pushEnterKeyword(state.checklist))

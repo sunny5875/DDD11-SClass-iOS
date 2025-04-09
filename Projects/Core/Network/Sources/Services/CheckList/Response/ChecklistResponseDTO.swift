@@ -10,14 +10,16 @@ import Foundation
 import CoreDomain
 
 public struct ChecklistResponseDTO: Decodable {
+  let checklistId: Int
+  let userNo: Int
   let title: String?
-  let checklistId: String
-  let checkboxes: [ChecklistItemDTO]
+  let createdTime: String
   
   enum CodingKeys: String, CodingKey {
+    case checklistId = "id"
+    case userNo
     case title
-    case checklistId
-    case checkboxes
+    case createdTime
   }
 }
 
@@ -25,8 +27,9 @@ extension ChecklistResponseDTO {
   var toEntity: Checklist {
     .init(
       id: self.checklistId,
+      createdTime: self.createdTime,
       title: self.title,
-      checkBoxList: self.checkboxes.map { $0.toEntity }
+      checkBoxList: []
     )
   }
 }

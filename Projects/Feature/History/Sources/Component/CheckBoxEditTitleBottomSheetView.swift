@@ -35,7 +35,7 @@ struct CheckBoxEditTitleBottomSheetView: View {
       InputField(
         errorMessage: .constant(nil),
         text: $store.newTitle,
-        placeHolder: store.selected?.label ?? "내용 변경",
+        placeHolder: store.selected?.content ?? "내용 변경",
         isFocused: $focus
       )
       

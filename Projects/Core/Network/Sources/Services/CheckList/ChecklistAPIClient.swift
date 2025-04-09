@@ -17,11 +17,11 @@ import Moya
 @DependencyClient
 public struct ChecklistAPIClient: Sendable {
   public var getChecklists: @Sendable(_ userID: String) async throws -> [Checklist]
-  public var getChecklist: @Sendable(_ id: String) async throws -> Checklist
-  public var deleteProject: @Sendable(_ checklistId: String) async throws -> Void
-  public var deleteChecklist: @Sendable(_ checklistId: String, _ checkBoxList: [String]) async throws -> [String]
-  public var changeKeyword: @Sendable(_ checklistId: String, _ newKeyword: String) async throws -> Void
-  public var complete: @Sendable(_ checklistId: String, _ id: String, _ completed: Bool) async throws -> Void
+  public var getChecklist: @Sendable(_ id: Int) async throws -> Checklist
+  public var deleteProject: @Sendable(_ checklistId: Int) async throws -> Void
+  public var deleteChecklist: @Sendable(_ checklistId: Int, _ checkBoxId: Int) async throws -> [String]
+  public var changeKeyword: @Sendable(_ checklistId: Int, _ newKeyword: String) async throws -> Void
+  public var complete: @Sendable(_ checklistId: Int, _ id: Int, _ completed: Bool) async throws -> Void
 }
 
 public extension DependencyValues {
@@ -48,7 +48,7 @@ extension ChecklistAPIClient: DependencyKey {
       let responseDTO: EmptyResponseDTO = try await APIService<ChecklistAPI>().request(api: api)
     },
     deleteChecklist: { checklistId, checkBox in
-      let api = ChecklistAPI.deleteChecklist(checklistId: checklistId, checkBoxList: checkBox)
+      let api = ChecklistAPI.deleteChecklist(checklistId: checklistId, checkBoxId: checkBox)
       let responseDTO: DeleteChecklistResponseDTO = try await APIService<ChecklistAPI>().request(api: api)
       return responseDTO.deletedIds
     },

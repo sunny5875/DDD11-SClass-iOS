@@ -37,7 +37,7 @@ public struct ChatStore {
     case didTapSendButton(String?)
     case onCompleteSend(TaskResult<Message>)
     case didTapCreateChecklistButton(MessageEntity)
-    case onCompleteCreateChecklist(String)
+    case onCompleteCreateChecklist(Int)
     
     
     // 나가기
@@ -125,7 +125,7 @@ public struct ChatStore {
         
       case .didTapCreateChecklistButton(let message):
         if let path = message.path {
-          return .send(.onCompleteCreateChecklist(path))
+          return .send(.onCompleteCreateChecklist(Int(path) ?? -1))
         } else {
           return .none
         }

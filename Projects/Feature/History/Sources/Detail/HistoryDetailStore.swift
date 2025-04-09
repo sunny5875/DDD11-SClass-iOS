@@ -24,7 +24,7 @@ public struct HistoryDetailStore {
     var newTitle: String = ""
     var currentTab: TabItem = .checklist
     var isActive: Bool {
-      newTitle != selected?.label
+      newTitle != selected?.content
     }
     
     var isLoading = true
@@ -95,7 +95,7 @@ public struct HistoryDetailStore {
       case .didTapEditTitle(let selected):
         state.selected = selected
         state.modal = .editTitle
-        state.newTitle = state.selected?.label ?? ""
+        state.newTitle = state.selected?.content ?? ""
         return .none
         
       case .didTapDelete(let selected):
@@ -120,7 +120,7 @@ public struct HistoryDetailStore {
         state.modal = nil
         if let selected = state.selected,
            let index = state.checkList.checkBoxList.firstIndex(of: selected) {
-          state.checkList.checkBoxList[index].label = state.newTitle
+          state.checkList.checkBoxList[index].content = state.newTitle
         }
         state.selected = nil
         return .none

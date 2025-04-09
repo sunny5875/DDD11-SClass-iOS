@@ -29,7 +29,7 @@ extension OnboardingKitDomain {
     case .chat:
       return "/v1/prompt"
     case .checklist:
-      return "/v1/checklists"
+      return "/checklists"
     }
   }
 }

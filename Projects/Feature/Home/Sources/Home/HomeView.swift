@@ -95,7 +95,7 @@ struct HomeView: View {
         } else {
           ForEach(store.displayedCheckBoxes) { checkBox in
             DefaultColorChecklistCellView(
-              title: checkBox.label,
+              title: checkBox.content,
               isSelected: checkBox.isCompleted,
               onToggle: {
                 store.send(.didTapChecklistCompleteButton(checkBox: checkBox))

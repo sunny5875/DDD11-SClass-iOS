@@ -65,7 +65,7 @@ private struct CheckItem: View {
   var body: some View {
     CreateChecklistCellView(
       isSelected: $isSelected,
-      title: item.label
+      title: item.content
     ) {
       store.send(.didTapChecklist(item))
     }

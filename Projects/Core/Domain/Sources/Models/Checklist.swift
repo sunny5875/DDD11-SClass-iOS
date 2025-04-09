@@ -8,19 +8,22 @@
 import Foundation
 
 public struct Checklist: Decodable, Equatable {
-  public let id: String
+  public let id: Int
+  public let createdTime: String
   public var title: String?
   public var checkBoxList: [CheckBox]
   
-  public init(id: String, title: String?, checkBoxList: [CheckBox]) {
+  public init(id: Int, createdTime: String, title: String?, checkBoxList: [CheckBox]) {
     self.id = id
+    self.createdTime = createdTime
     self.title = title
     self.checkBoxList = checkBoxList
   }
   
-  public init(id: String) {
+  public init(id: Int) {
     self.init(
       id: id,
+      createdTime: "",
       title: nil,
       checkBoxList: []
     )
@@ -28,6 +31,7 @@ public struct Checklist: Decodable, Equatable {
   
   enum CodingKeys: String, CodingKey {
     case id
+    case createdTime
     case title
     case checkBoxList
   }
@@ -39,7 +43,8 @@ public struct Checklist: Decodable, Equatable {
 
 public extension Checklist {
   static let mock1 = Self(
-    id: UUID().uuidString,
+    id: 1,
+    createdTime: "",
     title: "디자인 시스템",
     checkBoxList: [
       .mock1,
@@ -50,7 +55,8 @@ public extension Checklist {
   )
   
   static let mock2 = Self(
-    id: UUID().uuidString,
+    id: 2,
+    createdTime: "",
     title: "외주/거래처 협업",
     checkBoxList: [
       .mock5,

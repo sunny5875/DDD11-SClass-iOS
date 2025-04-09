@@ -10,12 +10,12 @@ import Foundation
 import CoreDomain
 
 public struct Card: Identifiable, Hashable, Equatable {
-  public let id: String
+  public let id: Int
   public let title: String
   public var checkBoxList: [CheckBox]
   public var percent: CGFloat = 0
   
-  public init(id: String, title: String?, checkBoxList: [CheckBox]) {
+  public init(id: Int, title: String?, checkBoxList: [CheckBox]) {
     self.id = id
     self.title = title ?? ""
     self.checkBoxList = checkBoxList
